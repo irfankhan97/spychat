@@ -3,13 +3,15 @@ from new import average
 import sys
 from datetime import datetime
 from steganography.steganography import Steganography
-from colorama import init, Fore, Style, Back
+from colorama import  Fore, Style, Back
+from colorama import init
+init()
 
 
 # -------------CREATE NEW USER---------------
 
 def add_Friend():
-    spy.name = raw_input("Enter your friend name: ")
+    spy.name = raw_input(Fore.RED+Style.BRIGHT+"Enter your friend name: ")
     while spy.name.isalpha() == False:
         spy.name = raw_input("Name contains only'A-Z' or 'a-z' alphabets.Please enter again: ")
 
@@ -27,10 +29,9 @@ def add_Friend():
 
         spy.name = spy.salutation + " " + spy.name
         print("Welcome " + spy.name)
-    spy.name = spy.salutation + " " + spy.name
 
-    confirmAge = raw_input(
-        "Hey dude your is in B/W (12 - 50) years ? if yes then press'Y',if not then press any other: ")
+
+    confirmAge = raw_input("Hey dude your is in B/W (12 - 50) years ? if yes then press'Y',if not then press any other: ")
     if confirmAge.upper() != 'Y':
         print("Sorry ! You can't become a spy.")
         exit()
@@ -45,25 +46,23 @@ def add_Friend():
 
         spyIsOnline = True
         friends.append(spy)
-        print("Now your friend '" + spy.salutation + " " + spy.name + "' is online..")
+        print(Fore.GREEN+Style.BRIGHT+"\nNow your friend " + " " + spy.name + " is online..\n")
         # --------TOTAL NO OF FRIENDS-------------#
         total_Friends = len(friends)
 
-        print("Total number of friends you have = " + str(total_Friends))
+        print(Fore.BLUE+Style.BRIGHT+"Total number of friends you have = " + str(total_Friends)+"\n")
 
 
 # -----------------------STARTING OF CHAT APPLICATION---------------------------------------#
 
-print("-------------------WELCOME TO SPY-CHAT-------------------")
-existing = raw_input(
-    "Do You Want To Continue As  " + spy.salutation + " " + spy.name + "  OR create a new user ('Y'/'Press any key')?:")
+print(Fore.GREEN+Style.BRIGHT+"-------------------WELCOME TO SPY-CHAT-------------------")
+existing = raw_input(Fore.RED+Style.BRIGHT+"\nDo You Want To Continue As  " + spy.salutation + " " + spy.name + "  OR create a new user ('Y'/'Press any key')?:\n")
 if existing.upper() == "Y":
-    print(
-    "Welcome--" + spy.salutation + spy.name + "\n" + "         Age: " + str(spy.age) + "\n" + "         Rating: " + str(
-        spy.rating) + "\n     " + "\"***Proud to have you with us***\"")
+    print(Fore.CYAN+Style.BRIGHT+"Welcome--" + spy.salutation + spy.name + "\n" + "         Age: " + str(spy.age) + "\n" + "         Rating: " + str( spy.rating) + "\n     " + "\"***Proud to have you with us***\"\n")
 else:
-    print ("--------------First you have to full-fill the requirements-----------")
-    spy.name = raw_input("Enter your name: ")
+    print (Fore.RED+Style.BRIGHT+"--------------First you have to full-fill the requirements-----------\n")
+
+    spy.name = raw_input(Fore.CYAN+Style.BRIGHT+"Enter your name: ")
     while spy.name.isalpha() == False:
         spy.name = raw_input("Name contains only'A-Z' or 'a-z' alphabets.Please enter again: ")
 
@@ -73,13 +72,12 @@ else:
         spy.name = raw_input("Please enter valid name: ")
 
         spy.name = spy.salutation + " " + spy.name
-        print("Welcome " + spy.name)
+        print("\nWelcome " + spy.name)
     spy.name = spy.salutation + " " + spy.name
 
-    confirmAge = raw_input(
-        "Hey dude are you in B/W (12 - 50) years ? if yes then press'Y',if not then press any other: ")
+    confirmAge = raw_input( Fore.GREEN+Style.BRIGHT+"Hey dude are you in B/W (12 - 50) years ? if yes then press'Y',if not then press any other: ")
     if confirmAge.upper() != 'Y':
-        print("Sorry ! You can't become a spy.")
+        print(Fore.RED+Style.BRIGHT+"Sorry ! You can't become a spy.")
         exit()
     else:
         spy.age = int(raw_input("Enter your age: "))
@@ -92,7 +90,7 @@ else:
 
         spyIsOnline = True
 
-        print("Welcome--" + spy.salutation + spy.name + "\n" + "         Age: " + str(
+        print("Welcome--" + spy.name + "\n" + "         Age: " + str(
             spy.age) + "\n" + "         Rating: " + str(spy.rating) + "\n     " + "\"***Proud to have you with us***\"")
 
 avail_Status = ['ON MISSION', 'YOU WILL NEVER GUESS MY SECRETS', "I'M INVINCINBLE"]
@@ -114,13 +112,13 @@ def add_Status():
     else:
         new_Status = raw_input("Please enter a new status: ")
         current_Status = new_Status
-        print("You new status -------:" + "\" " + current_Status + " \"")
+        print("\nYou new status -------:" + "\" " + current_Status + " \"")
         avail_Status.append(current_Status)
 
 
 # -------------------------------------SELECT A FRIEND()-----------------------------------------#
 def select_a_Friend():
-    print("--------LIST OF YOUR FRIENDS--------")
+    print(Fore.CYAN+Style.BRIGHT+"--------LIST OF YOUR FRIENDS--------\n")
     count = 1
     for temp in friends:
         print(str(count) + ". " + temp.salutation + " " + temp.name)
@@ -129,7 +127,7 @@ def select_a_Friend():
     totalFriends = len(friends)
     select = int(raw_input("Select a friend: "))
     while select > totalFriends or select <= 0:
-        select = int(raw_input("No such type of friend lie at this position in your friend list.Please enter again:"))
+        select = int(raw_input("No such type of friend lie at this position in your friend list.Please enter again: "))
 
     return (select - 1)
 
@@ -141,13 +139,13 @@ def send_a_secretMessage():
     select = select_a_Friend()
     receiver = select
     # org_Img = raw_input("Please enter the name of the image:  ")
-    org_Img = raw_input("Enter image name here")
+    org_Img = raw_input("Enter image name here: ")
     new_Img = raw_input("New name of the image: ")
-    new_Img = org_Img + new_Img + ".jpg"
+    new_Img = new_Img + ".jpg"
     text = raw_input("Enter the message you wanna send to your friend: ")
     while len(text) <= 0:
         text = raw_input("You didn't send any message.PLzz enter again: ")
-    print("......YOUR MESSAGE IS GETTING ENCRYPTED.....PLEASE WAIT...")
+    print(Fore.GREEN+Style.BRIGHT+"\n......YOUR MESSAGE IS GETTING ENCRYPTED.....PLEASE WAIT...\n")
     Steganography.encode(org_Img, new_Img, text)
     chat = ChatMessage(text, True)
     friends[select].chats.append(chat)
@@ -172,11 +170,11 @@ def read_message():
     receiver = sender
     output_path = raw_input("What is the name of the file?")
     output_path = "C:\Users\DELL\PycharmProjects\spychat_final\\" + output_path
-    print("..........YOUR MESSAGE IS DECODING.....PLEASE WAIT...")
+    print(Fore.GREEN+Style.BRIGHT+"\n..........YOUR MESSAGE IS DECODING.....PLEASE WAIT...\n")
     secret_text = Steganography.decode(output_path)
     # var = "The message is empty...."
     if secret_text == 'SOS':
-        txt = "I'm on the way,jst send me your location"
+        txt = Fore.RED+Style.BRIGHT+"I'm on the way,jst send me your location"
         print(txt)
         new_chat = ChatMessage(txt, False)
         spy.chats.append(new_chat)
@@ -244,10 +242,8 @@ def chatHistory():
 def startChat():
     menu = True
     while menu:
-        print("What do you wanna do ?.")
-        print(
-        " 1. **Add a status**.....\n 2. **Add a friend**....\n 3. **Send a secret message**....\n 4. **Read a secret message**....\n"
-        " 5. **Read chats from a user**....\n 6. **Close the Application**....\n")
+        print(Fore.GREEN+Style.BRIGHT+"What do you wanna do ?.")
+        print( "\n 1. **Add a status**.....\n 2. **Add a friend**....\n 3. **Send a secret message**....\n 4. **Read a secret message**....\n"" 5. **Read chats from a user**....\n 6. **Close the Application**....\n")
         choice = int(raw_input("Enter your choice: "))
         while choice <= 0 or choice > 6:
             choice = int(raw_input("Please enter a digit B/W '1-6': "))
